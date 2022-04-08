@@ -5,6 +5,7 @@ import { getAllProducts, getCategories } from '../api/fakeStoreApi'
 import { ProductType } from '../types/apiResponses'
 import styles from '../styles/Home.module.scss'
 import ProductCard from '../components/ProductCard'
+import Sidebar from '../components/Sidebar'
 
 const Home: NextPage = ({categories, products}: InferGetServerSidePropsType<GetServerSideProps>) => {
   return (
@@ -20,9 +21,7 @@ const Home: NextPage = ({categories, products}: InferGetServerSidePropsType<GetS
           Welcome to Next Store
         </h1>
         <div>
-          <ul>
-            {categories.map((category: string, index: number) => <li key={index}>{category}</li>)}
-          </ul>
+          <Sidebar categories={categories} />
           <div className={styles.card__container}>
             {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
           </div>

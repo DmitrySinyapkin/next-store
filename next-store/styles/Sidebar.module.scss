@@ -1,0 +1,40 @@
+$width: 300px;
+$height: 300px;
+$bg-color: white;
+$bg-color-hover: #f6f6f6;
+
+.sidebar {
+    width: $width;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    background: $bg-color;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+
+    
+    h3 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    ul {
+        width: $width * 0.9;
+        margin: 0 5px 20px 5px;
+        list-style-type: none;
+
+        li {
+            width: 100%;
+            padding: 5px;
+            border-bottom: 1px solid grey;
+            font-size: 1.3rem;
+            text-align: center;
+
+            &:hover {
+                background-color: $bg-color-hover;
+            }
+        }
+    }
+}

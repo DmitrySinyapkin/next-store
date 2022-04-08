@@ -2,6 +2,7 @@ $card-width: 300px;
 $card-height: 380px;
 $img-width: 280px;
 $img-height: 200px;
+$bg-color: white;
 
 .card {
     width: $card-width;
@@ -9,6 +10,7 @@ $img-height: 200px;
     border-radius: 10px;
     padding: 10px;
     border: 1px solid black;
+    background: $bg-color;
 
     display: flex;
     flex-direction: column;
