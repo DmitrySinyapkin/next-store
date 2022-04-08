@@ -1,0 +1,35 @@
+.layout {
+    background: #f6f6f6;
+    display: grid;
+    grid-template-areas: 
+        "header  header"
+        "sidebar main"
+        "footer  footer"
+    ;
+    grid-template-columns: 320px auto;
+    grid-template-rows: 100px auto 100px;
+
+    header {
+        grid-area: header;
+    }
+
+    aside {
+        grid-area: sidebar;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    .logo {
+        height: 1em;
+        margin-left: 0.5rem;
+      }
+}

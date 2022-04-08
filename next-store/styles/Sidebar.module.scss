@@ -2,13 +2,14 @@ $width: 300px;
 $height: 300px;
 $bg-color: white;
 $bg-color-hover: #f6f6f6;
+$shadow: 5px 5px 10px grey;
 
 .sidebar {
     width: $width;
     padding-bottom: 30px;
     border-radius: 10px;
     background: $bg-color;
-    border: 1px solid black;
+    box-shadow: $shadow;
 
     display: flex;
     flex-direction: column;

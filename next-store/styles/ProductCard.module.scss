@@ -3,14 +3,15 @@ $card-height: 380px;
 $img-width: 280px;
 $img-height: 200px;
 $bg-color: white;
+$shadow: 5px 5px 10px grey;
 
 .card {
     width: $card-width;
     height: $card-height;
     border-radius: 10px;
     padding: 10px;
-    border: 1px solid black;
     background: $bg-color;
+    box-shadow: $shadow;
 
     display: flex;
     flex-direction: column;
