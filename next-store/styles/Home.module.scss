@@ -108,6 +108,13 @@
   margin-left: 0.5rem;
 }
 
+.card__container {
+  width: 610px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

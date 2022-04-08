@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { getAllProducts, getCategories } from '../api/fakeStoreApi'
 import { ProductType } from '../types/apiResponses'
 import styles from '../styles/Home.module.scss'
+import ProductCard from '../components/ProductCard'
 
 const Home: NextPage = ({categories, products}: InferGetServerSidePropsType<GetServerSideProps>) => {
   return (
@@ -22,9 +23,9 @@ const Home: NextPage = ({categories, products}: InferGetServerSidePropsType<GetS
           <ul>
             {categories.map((category: string, index: number) => <li key={index}>{category}</li>)}
           </ul>
-          <ul>
-            {products.map((product: ProductType) => <li key={product.id}>{product.title} - {product.price}$</li>)}
-          </ul>
+          <div className={styles.card__container}>
+            {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
+          </div>
         </div>
       </main>
 

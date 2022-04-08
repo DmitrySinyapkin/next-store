@@ -1,0 +1,33 @@
+$card-width: 300px;
+$card-height: 380px;
+$img-width: 280px;
+$img-height: 200px;
+
+.card {
+    width: $card-width;
+    height: $card-height;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    figure {
+        width: $img-width;
+        height: $img-height;
+        border-radius: 10px;
+    }
+
+    .card__title {
+        font-size: 1rem;
+    }
+
+    .card__price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
