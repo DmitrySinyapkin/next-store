@@ -4,6 +4,7 @@ import { ProductType } from '../types/apiResponses'
 import styles from '../styles/Home.module.scss'
 import ProductCard from '../components/ProductCard'
 import MainLayout from '../layouts/MainLayout'
+import ListLayout from '../layouts/ListLayout'
 
 const Home: NextPage = ({ categories, products}: InferGetServerSidePropsType<GetServerSideProps>) => {
   const title = 'Home'
@@ -11,9 +12,9 @@ const Home: NextPage = ({ categories, products}: InferGetServerSidePropsType<Get
   
   return (
     <MainLayout categories={categories} title={title} description={description}>
-       <div className={styles.card__container}>
-          {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
-        </div>
+      <ListLayout header="Welcome to My Next Store">
+        {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
+      </ListLayout>
     </MainLayout>
   )
 }
