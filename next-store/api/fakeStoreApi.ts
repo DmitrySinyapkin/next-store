@@ -10,8 +10,8 @@ export const getCategories = () => {
     return doGetRequest(CATEGORIES_URL)
 }
 
-export const getProductsByCategory = (category: string) => {
-    const url = CATEGORIES_URL + `/${category}`
+export const getProductsByCategory = (category: string | string[] | undefined) => {
+    const url = PRODUCTS_URL + `/category/${category}`
     return doGetRequest(url)
 }
 

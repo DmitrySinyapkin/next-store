@@ -6,9 +6,11 @@ const Sidebar = ({ categories }: { categories: string[] }) => {
     return (
         <div className={styles.sidebar}>
             <h3>Categories</h3>
-            <ul>
-                {categories.map((category, index) => <li key={index}>{firstCharToUpperCase(category)}</li>)}
-            </ul>
+            <nav>
+                <ul>
+                    {categories.map((category, index) => <li key={index}><Link href={`/products/category/${category}`}><a>{firstCharToUpperCase(category)}</a></Link></li>)}
+                </ul>
+            </nav>
         </div>
     )
 }

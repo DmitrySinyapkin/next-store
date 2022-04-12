@@ -1,7 +1,6 @@
 import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { getAllProducts, getCategories } from '../api/fakeStoreApi'
 import { ProductType } from '../types/apiResponses'
-import styles from '../styles/Home.module.scss'
 import ProductCard from '../components/ProductCard'
 import MainLayout from '../layouts/MainLayout'
 import ListLayout from '../layouts/ListLayout'
