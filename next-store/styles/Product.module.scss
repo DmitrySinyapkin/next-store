@@ -38,7 +38,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
+        align-items: center;
+        gap: 30px;
 
         figure {
             position: relative;
@@ -73,6 +74,7 @@
 
     .description {
         margin-top: 20px;
+        padding: 0 20px;
     }
 
     .rating {

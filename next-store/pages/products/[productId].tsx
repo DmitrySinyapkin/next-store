@@ -7,7 +7,7 @@ import styles from "../../styles/Product.module.scss"
 
 const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<GetServerSideProps>) => {
     return (
-        <MainLayout categories={categories} title={firstCharToUpperCase(product.category)} description={product.description}>
+        <MainLayout categories={categories} title={firstCharToUpperCase(product.title)} description={product.description}>
             <div className={styles.product}>
                 <h1>{product.title}</h1>
                 <div className={styles.container}>
