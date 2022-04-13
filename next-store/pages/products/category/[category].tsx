@@ -14,9 +14,9 @@ const Category: NextPage = ({ categories, products}: InferGetServerSidePropsType
     
     return (
         <MainLayout categories={categories} title={title} description={description}>
-        <ListLayout header={firstCharToUpperCase(title)}>
-            {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
-        </ListLayout>
+            <ListLayout header={firstCharToUpperCase(title)}>
+                {products.map((product: ProductType) => <ProductCard key={product.id} product={product} />)}
+            </ListLayout>
         </MainLayout>
     )
 }
@@ -26,8 +26,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const products = await getProductsByCategory(ctx.query.category)
     return {
         props: {
-        categories,
-        products,
+            categories,
+            products,
         },
     } 
 }

@@ -18,3 +18,8 @@ export const getProductsByCategory = (category: string | string[] | undefined) =
 export const getAllProducts = () => {
     return doGetRequest(PRODUCTS_URL)
 }
+
+export const getProductById = (id: string | string[] | undefined) => {
+    const url = PRODUCTS_URL + `/${id}`
+    return doGetRequest(url)
+}
