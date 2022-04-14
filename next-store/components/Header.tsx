@@ -1,5 +1,6 @@
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, Badge } from 'antd'
+import Link from 'next/link'
 import styles from '../styles/Header.module.scss'
 
 const { Search } = Input
@@ -7,7 +8,7 @@ const { Search } = Input
 const Header = () => {
     return (
         <div className={styles.header}>
-            <div className={styles.logo}>MNShop</div>
+            <div className={styles.logo}><Link href={'/'}><a>MNShop</a></Link></div>
             <div className={styles.search}>
                 <Search placeholder='Search products...' style={{ width: 300 }} />
             </div>
