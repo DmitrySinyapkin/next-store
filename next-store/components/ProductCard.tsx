@@ -9,7 +9,7 @@ const ProductCard = ({ product }: { product: ProductType}) => {
             <Link href={`/products/${product.id}`}>
                 <a>
                     <figure>
-                        <Image src={product.image} alt='No image' width={200} height={200} />
+                        <Image src={product.image} alt='No image' layout="fill" objectFit="contain" />
                     </figure>
                     <div className={styles.card__title}>
                         <span>{product.title}</span>

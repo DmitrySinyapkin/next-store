@@ -1,6 +1,6 @@
 $card-width: 300px;
 $card-height: 380px;
-$img-width: 280px;
+$img-width: 250px;
 $img-height: 200px;
 $bg-color: white;
 $shadow: 5px 5px 10px grey;
@@ -21,6 +21,8 @@ $shadow: 5px 5px 10px grey;
         width: $img-width;
         height: $img-height;
         border-radius: 10px;
+        position: relative;
+        margin: 5px;
     }
 
     .card__title {

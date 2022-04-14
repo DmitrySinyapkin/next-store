@@ -7,7 +7,7 @@
         "footer  footer"
     ;
     grid-template-columns: 320px auto;
-    grid-template-rows: 100px auto 100px;
+    grid-template-rows: auto auto 100px;
 
     @media (max-width: 630px) {
         grid-template-areas: 
@@ -17,7 +17,7 @@
             "footer"
         ;
         grid-template-columns: auto;
-        grid-template-rows: 100px auto auto 100px;
+        grid-template-rows: auto auto auto 100px;
     }
 
     header {
@@ -26,6 +26,7 @@
 
     aside {
         grid-area: sidebar;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -37,6 +38,7 @@
 
     main {
         grid-area: main;
+        margin-top: 20px;
         min-height: 85vh;
 
         @media (max-width: 630px) {
