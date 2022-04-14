@@ -12,8 +12,8 @@
     @media (max-width: 630px) {
         grid-template-areas: 
             "header"
-            "sidebar"
             "main"
+            "sidebar"
             "footer"
         ;
         grid-template-columns: auto;
@@ -38,6 +38,10 @@
     main {
         grid-area: main;
         min-height: 85vh;
+
+        @media (max-width: 630px) {
+            min-height: 0;
+        }
     }
 
     footer {
