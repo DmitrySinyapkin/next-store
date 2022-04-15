@@ -1,0 +1,41 @@
+.item {
+    width: 1550px;
+    margin: 2px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media (min-width: 1551px) and (max-width: 1920px) {
+        width: 1250px;
+    }
+
+    @media (min-width: 1251px) and (max-width: 1550px) {
+        width: 920px;
+    }
+
+    @media (min-width: 941px) and (max-width: 1250px) {
+        width: 610px;
+    }
+
+    @media (max-width: 940px) {
+        width: 300px;
+    }
+
+    figure {
+        width: 20px;
+        height: 20px;
+        position: relative;
+    }
+
+    .quantity {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+}

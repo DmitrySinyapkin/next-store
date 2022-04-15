@@ -6,6 +6,11 @@ import styles from '../styles/Header.module.scss'
 const { Search } = Input
 
 const Header = () => {
+
+    const getProductsAmount = () => {
+        return localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!).length : 0
+    }
+
     return (
         <div className={styles.header}>
             <div className={styles.logo}><Link href={'/'}><a>MNShop</a></Link></div>
@@ -13,10 +18,14 @@ const Header = () => {
                 <Search placeholder='Search products...' style={{ width: 300 }} />
             </div>
             <div className={styles.user}>
-                <Badge count={2} size='small'>
+                <Badge count={() => getProductsAmount()} size='small'>
                     <div className={styles.cart}>
-                        <ShoppingCartOutlined />
-                        <span>Cart</span>
+                        <Link href={'/carts/current'}>
+                            <a>
+                                <ShoppingCartOutlined />
+                                <span>Cart</span>
+                            </a>
+                        </Link>
                     </div>
                 </Badge>
                 <div className={styles.login}>

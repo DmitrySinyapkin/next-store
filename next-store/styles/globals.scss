@@ -24,3 +24,16 @@ a {
 figure {
   padding: 0;
 }
+
+button {
+  width: 150px;
+  padding: 3px;
+  background-color: darkcyan;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: whitesmoke;
+
+  &:hover {
+      background-color: #0f6464;
+  }
+}
