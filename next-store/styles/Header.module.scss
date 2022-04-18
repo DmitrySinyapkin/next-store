@@ -1,0 +1,64 @@
+@mixin flex-block {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.header {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 5px 5px 10px grey;;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        font-size: 3rem;
+        font-weight: bold;
+        color: darkcyan;
+
+        grid-area: logo;
+
+        @media (max-width: 940px) {
+            font-size: 2rem;
+        }
+
+        a {
+            color: darkcyan;
+        }
+    }
+
+    .search {
+        grid-area: search;
+        justify-self: center;
+    }
+
+    .user {
+        grid-area: user;
+        @include flex-block();
+        gap: 30px;
+        justify-self: end;
+
+        .cart {
+            @include flex-block();
+        }
+
+        .login {
+            @include flex-block();
+        }
+    }
+
+    @media (max-width: 940px) {
+        display: grid;
+        grid-template-areas: 
+            "logo   user"
+            "search search"
+        ;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        gap: 10px;
+    }
+}
