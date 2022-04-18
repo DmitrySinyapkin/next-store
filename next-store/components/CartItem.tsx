@@ -4,10 +4,14 @@ import { ProductInCartType } from "../types/cart"
 import styles from "../styles/CartItem.module.scss"
 import Link from "next/link"
 
-const CartItem = ({ product, handleQuantityChange }: { product: ProductInCartType, handleQuantityChange: Function}) => {
+const CartItem = ({ product, handleQuantityChange, handleRemoveFromList }: { product: ProductInCartType, handleQuantityChange: Function, handleRemoveFromList: Function}) => {
 
     const handleChange = (value: number) => {
         handleQuantityChange(product.id, value)
+    }
+
+    const handleRemove = () => {
+        handleRemoveFromList(product.id)
     }
 
     return (
@@ -26,10 +30,10 @@ const CartItem = ({ product, handleQuantityChange }: { product: ProductInCartTyp
             </div>
             <div className={styles.quantity}>
                 <div>Quantity:</div>
-                <InputNumber value={product.quantity} onChange={handleChange} />
+                <InputNumber value={product.quantity} min={1} onChange={handleChange} />
             </div>
-            <div className={styles.price}>{product.quantity * +product.price} $</div>
-            <button>Remove</button>
+            <div className={styles.price}>{(product.quantity * +product.price * 100) / 100} $</div>
+            <button onClick={handleRemove}>Remove</button>
         </div>
     )
 }
