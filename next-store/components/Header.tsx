@@ -1,11 +1,13 @@
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, Badge } from 'antd'
 import Link from 'next/link'
+import { useCountContext } from '../context/CountContext'
 import styles from '../styles/Header.module.scss'
 
 const { Search } = Input
 
 const Header = () => {
+    const [count, setCount] = useCountContext()
 
     const getProductsAmount = () => {
         return localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!).length : 0
@@ -18,7 +20,7 @@ const Header = () => {
                 <Search placeholder='Search products...' style={{ width: 300 }} />
             </div>
             <div className={styles.user}>
-                <Badge count={() => getProductsAmount()} size='small'>
+                <Badge count={count} size='small'>
                     <div className={styles.cart}>
                         <Link href={'/carts/current'}>
                             <a>

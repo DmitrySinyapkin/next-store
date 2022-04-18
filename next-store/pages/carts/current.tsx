@@ -1,12 +1,16 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCategories } from "../../api/fakeStoreApi";
 import CartItem from "../../components/CartItem";
 import MainLayout from "../../layouts/MainLayout";
 import { ProductInCartType } from "../../types/cart";
 
 const CurrentCart: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
-    const [products, setProducts] = useState(localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : [])
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        setProducts(localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : [])
+    }, [])
 
     const handleQuantityChange = (id: number, value: number) => {
         const changed = [

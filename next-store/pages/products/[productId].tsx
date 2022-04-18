@@ -5,8 +5,10 @@ import MainLayout from "../../layouts/MainLayout";
 import { firstCharToUpperCase } from "../../utils/firstCharToUpperCase";
 import styles from "../../styles/Product.module.scss"
 import { ProductInCartType } from "../../types/cart";
+import { useCountContext } from "../../context/CountContext";
 
 const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<GetServerSideProps>) => {
+    const [count, setCount] = useCountContext()
 
     const handleAddToCart = (product: ProductInCartType) => {
         const newProduct = {
@@ -16,6 +18,7 @@ const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<
         const products = localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : []
         const changed = [...products, newProduct]
         localStorage.setItem('mnstore-cart', JSON.stringify(changed))
+        setCount((prev: number) => prev + 1)
     }
 
     return (
