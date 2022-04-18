@@ -17,10 +17,14 @@ const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<
             quantity: 1
         }
         const products = localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : []
-        const changed = [...products, newProduct]
-        localStorage.setItem('mnstore-cart', JSON.stringify(changed))
-        setCount((prev: number) => prev + 1)
-        message.success('Added to cart')
+        if (products.some((product: ProductInCartType) => product.id === newProduct.id)) {
+            message.warning('This product is already in the cart')
+        } else {
+            const changed = [...products, newProduct]
+            localStorage.setItem('mnstore-cart', JSON.stringify(changed))
+            setCount((prev: number) => prev + 1)
+            message.success('Added to cart')
+        }
     }
 
     return (

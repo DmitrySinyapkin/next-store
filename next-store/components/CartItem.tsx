@@ -32,7 +32,7 @@ const CartItem = ({ product, handleQuantityChange, handleRemoveFromList }: { pro
                 <div>Quantity:</div>
                 <InputNumber value={product.quantity} min={1} onChange={handleChange} />
             </div>
-            <div className={styles.price}>{(product.quantity * +product.price * 100) / 100} $</div>
+            <div className={styles.price}>{((product.quantity * +product.price * 100) / 100).toFixed(2)} $</div>
             <button onClick={handleRemove}>Remove</button>
         </div>
     )
