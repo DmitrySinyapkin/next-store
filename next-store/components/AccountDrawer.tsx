@@ -7,14 +7,15 @@ const AccountDrawer = ({ authorized, visible, handleToggle }: { authorized: bool
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (localStorage.getItem('mnstore-user')) {
             setTitle(JSON.parse(localStorage.getItem('mnstore-user')!).username)
         }
-    }, [])
+    }, []) */
 
     const handleSubmit = () => {
         login(username, password)
+        handleToggle()
     }
 
     return (
@@ -45,7 +46,7 @@ const AccountDrawer = ({ authorized, visible, handleToggle }: { authorized: bool
                                 pattern: /^[A-Za-z0-9_^]+$/,
                             }]}
                         >
-                            <Input type='password' onChange={(e) => setPassword(e.target.value)} />
+                            <Input.Password type='password' onChange={(e) => setPassword(e.target.value)} />
                         </Form.Item>
                         <Form.Item>
                             <button type="submit">Log in</button>

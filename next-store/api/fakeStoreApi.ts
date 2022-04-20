@@ -1,4 +1,6 @@
-import { CATEGORIES_URL, LOGIN_URL, POST_METHOD, PRODUCTS_URL } from "../constants/fakeStoreApi"
+import { CATEGORIES_URL, LOGIN_URL, POST_METHOD, PRODUCTS_URL, USERS_URL } from "../constants/fakeStoreApi"
+import { LS_AUTH_USER, LS_TOKEN } from "../constants/localStorage"
+import { UserType } from "../types/apiResponses"
 
 const doGetRequest = async (url: string) => {
     const res = await fetch(url)
@@ -37,6 +39,10 @@ export const getProductById = (id: string | string[] | undefined) => {
     return doGetRequest(url)
 }
 
+const getAllUsers = () => {
+    return doGetRequest(USERS_URL)
+}
+
 export const login = (username: string, password: string) => {
     const url = LOGIN_URL
     const body = JSON.stringify({
@@ -44,6 +50,15 @@ export const login = (username: string, password: string) => {
         password
     })
     doPostRequest(url, body)
-        .then(resp => console.log(resp))
+        .then(resp => {
+            // mock realization bacause of api abilities
+            if (resp.token) {
+                localStorage.setItem(LS_TOKEN, resp.token)
+                getAllUsers().then(resp => {
+                    const user = resp.find((user: UserType) => user.username === username)
+                    localStorage.setItem(LS_AUTH_USER, JSON.stringify(user))
+                })
+            }
+        })
         .catch(err => console.log(err))
 }
