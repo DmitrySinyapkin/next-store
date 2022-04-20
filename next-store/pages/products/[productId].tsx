@@ -7,6 +7,7 @@ import styles from "../../styles/Product.module.scss"
 import { ProductInCartType } from "../../types/cart";
 import { useCountContext } from "../../context/CountContext";
 import { Space, message } from "antd";
+import { LS_CART } from "../../constants/localStorage";
 
 const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<GetServerSideProps>) => {
     const [count, setCount] = useCountContext()
@@ -16,12 +17,12 @@ const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<
             ...product,
             quantity: 1
         }
-        const products = localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : []
+        const products = localStorage.getItem(LS_CART) ? JSON.parse(localStorage.getItem(LS_CART)!) : []
         if (products.some((product: ProductInCartType) => product.id === newProduct.id)) {
             message.warning('This product is already in the cart')
         } else {
             const changed = [...products, newProduct]
-            localStorage.setItem('mnstore-cart', JSON.stringify(changed))
+            localStorage.setItem(LS_CART, JSON.stringify(changed))
             setCount((prev: number) => prev + 1)
             message.success('Added to cart')
         }
