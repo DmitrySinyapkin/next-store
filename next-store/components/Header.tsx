@@ -2,6 +2,7 @@ import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, Badge } from 'antd'
 import Link from 'next/link'
 import { useState } from 'react'
+import { LS_CART } from '../constants/localStorage'
 import { useCountContext } from '../context/CountContext'
 import styles from '../styles/Header.module.scss'
 import AccountDrawer from './AccountDrawer'
@@ -12,17 +13,13 @@ const Header = () => {
     const [count, setCount] = useCountContext()
     const [drawerVisible, setDrawerVisible] = useState(false)
 
-    const getProductsAmount = () => {
-        return localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!).length : 0
-    }
-
     const handleDrawerToggle = () => {
         setDrawerVisible(prev => !prev)
     }
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}><Link href={'/'}><a>MNShop</a></Link></div>
+            <div className={styles.logo}><Link href={'/'}><a>MNStore</a></Link></div>
             <div className={styles.search}>
                 <Search placeholder='Search products...' style={{ width: 300 }} />
             </div>
