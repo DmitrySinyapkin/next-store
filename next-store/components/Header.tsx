@@ -12,29 +12,14 @@ const { Search } = Input
 const Header = () => {
     const [count, setCount] = useCountContext()
     const [drawerVisible, setDrawerVisible] = useState(false)
-    const [title, setTitle] = useState('')
-
-    useEffect(() => {
-        if (localStorage.getItem(LS_AUTH_USER)) {
-            setTitle(JSON.parse(localStorage.getItem(LS_AUTH_USER)!).name.firstname)
-        } else {
-            setTitle('Log in')
-        }
-    }, [])
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (localStorage.getItem(LS_AUTH_USER)) {
-                setTitle(JSON.parse(localStorage.getItem(LS_AUTH_USER)!).name.firstname)
-            } else {
-                setTitle('Log in')
-            }
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [drawerVisible])
+    const [title, setTitle] = useState('Log in')
 
     const handleDrawerToggle = () => {
         setDrawerVisible(prev => !prev)
+    }
+
+    const handleLogin = (username: string) => {
+        setTitle(username)
     }
 
     return (
@@ -59,7 +44,7 @@ const Header = () => {
                     <span>{title}</span>
                 </div>
             </div>
-            <AccountDrawer authorized={false} visible={drawerVisible} handleToggle={handleDrawerToggle} />
+            <AccountDrawer visible={drawerVisible} handleToggle={handleDrawerToggle} handleLogin={handleLogin} />
         </div>
     )
 }

@@ -49,14 +49,15 @@ export const login = (username: string, password: string) => {
         username,
         password
     })
-    doPostRequest(url, body)
+    return doPostRequest(url, body)
         .then(resp => {
             // mock realization bacause of api abilities
             if (resp.token) {
                 localStorage.setItem(LS_TOKEN, resp.token)
-                getAllUsers().then(resp => {
+                return getAllUsers().then(resp => {
                     const user = resp.find((user: UserType) => user.username === username)
                     localStorage.setItem(LS_AUTH_USER, JSON.stringify(user))
+                    return user
                 })
             }
         })

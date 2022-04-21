@@ -1,27 +1,27 @@
 import { Drawer, Form, Input } from "antd"
 import { useEffect, useState } from "react"
 import { login } from "../api/fakeStoreApi"
+import { LS_AUTH_USER } from "../constants/localStorage"
+import { UserType } from "../types/apiResponses"
 
-const AccountDrawer = ({ authorized, visible, handleToggle }: { authorized: boolean, visible: boolean, handleToggle: Function }) => {
-    const [title, setTitle] = useState('Log in')
+const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolean, handleToggle: Function, handleLogin: Function }) => {
+    const [user, setUser] = useState<UserType | null>(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
 
-    /* useEffect(() => {
-        if (localStorage.getItem('mnstore-user')) {
-            setTitle(JSON.parse(localStorage.getItem('mnstore-user')!).username)
-        }
-    }, []) */
-
     const handleSubmit = () => {
         login(username, password)
+            .then(resp => {
+                setUser(resp)
+                handleLogin(resp.name.firstname)
+            })
         handleToggle()
     }
 
     return (
         <>
-            <Drawer title={title} visible={visible} onClose={handleToggle}>
-                {authorized
+            <Drawer title={user ? user.name.firstname : 'Log in'} visible={visible} onClose={handleToggle}>
+                {user
                     ?
                     <div>Mock div for now</div>
                     :
