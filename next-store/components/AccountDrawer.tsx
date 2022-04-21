@@ -1,7 +1,7 @@
 import { Drawer, Form, Input } from "antd"
-import { useEffect, useState } from "react"
+import Link from "next/link"
+import { useState } from "react"
 import { login } from "../api/fakeStoreApi"
-import { LS_AUTH_USER } from "../constants/localStorage"
 import { UserType } from "../types/apiResponses"
 
 const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolean, handleToggle: Function, handleLogin: Function }) => {
@@ -51,6 +51,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolea
                         <Form.Item>
                             <button type="submit">Log in</button>
                         </Form.Item>
+                        <div style={{textAlign: 'center'}}>Don&apos;t have an account? <Link href={'/signup'}><a>Sign up</a></Link></div>
                     </Form>
                 }
             </Drawer>
