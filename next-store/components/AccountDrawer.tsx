@@ -1,4 +1,4 @@
-import { Drawer, Form, Input } from "antd"
+import { Drawer, Form, Input, message, Space } from "antd"
 import Link from "next/link"
 import { useState } from "react"
 import { login } from "../api/fakeStoreApi"
@@ -14,7 +14,9 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolea
             .then(resp => {
                 setUser(resp)
                 handleLogin(resp.name.firstname)
+                message.success(`${resp.name.firstname} is logged in`)
             })
+            .catch(err => message.error(`Authorization error: ${err}`))
         handleToggle()
     }
 
@@ -25,34 +27,36 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolea
                     ?
                     <div>Mock div for now</div>
                     :
-                    <Form onFinish={handleSubmit}>
-                        <Form.Item
-                            name='username'
-                            label='Username:'
-                            rules={[{
-                                required: true,
-                                message: 'Please, enter correct username!',
-                                pattern: /^[a-zA-Z]\w+$/,
-                            }]}
-                        >
-                            <Input onChange={(e) => setUsername(e.target.value)} />
-                        </Form.Item>
-                        <Form.Item
-                            name='password'
-                            label='Password:'
-                            rules={[{
-                                required: true,
-                                message: 'Unacceptable symbols',
-                                pattern: /^[A-Za-z0-9_^]+$/,
-                            }]}
-                        >
-                            <Input.Password type='password' onChange={(e) => setPassword(e.target.value)} />
-                        </Form.Item>
-                        <Form.Item>
-                            <button type="submit">Log in</button>
-                        </Form.Item>
-                        <div style={{textAlign: 'center'}}>Don&apos;t have an account? <Link href={'/signup'}><a>Sign up</a></Link></div>
-                    </Form>
+                    <Space>
+                        <Form onFinish={handleSubmit}>
+                            <Form.Item
+                                name='username'
+                                label='Username:'
+                                rules={[{
+                                    required: true,
+                                    message: 'Please, enter correct username!',
+                                    pattern: /^[a-zA-Z]\w+$/,
+                                }]}
+                            >
+                                <Input onChange={(e) => setUsername(e.target.value)} />
+                            </Form.Item>
+                            <Form.Item
+                                name='password'
+                                label='Password:'
+                                rules={[{
+                                    required: true,
+                                    message: 'Unacceptable symbols',
+                                    pattern: /^[A-Za-z0-9_^]+$/,
+                                }]}
+                            >
+                                <Input.Password type='password' onChange={(e) => setPassword(e.target.value)} />
+                            </Form.Item>
+                            <Form.Item>
+                                <button type="submit">Log in</button>
+                            </Form.Item>
+                            <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'/signup'}><a>Sign up</a></Link></div>
+                        </Form>
+                    </Space>
                 }
             </Drawer>
         </>
