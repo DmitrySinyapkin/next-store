@@ -1,13 +1,62 @@
-import { Drawer, Form, Input, message, Space } from "antd"
+import { LogoutOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons"
+import { Drawer, Form, Input, List, message, Space } from "antd"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { login } from "../api/fakeStoreApi"
+import { LS_AUTH_USER, LS_TOKEN } from "../constants/localStorage"
 import { UserType } from "../types/apiResponses"
+import { AccountItemType } from "../types/common"
 
-const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolean, handleToggle: Function, handleLogin: Function }) => {
+const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { visible: boolean, handleToggle: Function, handleLogin: Function, handleExit: Function }) => {
     const [user, setUser] = useState<UserType | null>(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
+
+    const listData: Array<AccountItemType> = [
+        {
+            title: 'Your profile',
+            link: '/user/profile',
+            icon: <UserOutlined />
+        },
+        {
+            title: 'Your orders',
+            link: '/user/orders',
+            icon: <UnorderedListOutlined />
+        },
+        {
+            title: 'Log out',
+            link: null,
+            icon: <LogoutOutlined />
+        },
+    ]
+
+    useEffect(() => {
+        if (localStorage.getItem(LS_AUTH_USER)) {
+            setUser(JSON.parse(localStorage.getItem(LS_AUTH_USER)!))
+        }
+    }, [])
+
+    const handleLogout = () => {
+        setUser(null)
+        localStorage.removeItem(LS_AUTH_USER)
+        localStorage.removeItem(LS_TOKEN)
+        handleExit()
+        handleToggle()
+        message.info('Logged out of account')
+    }
+
+    const renderItem = (item: AccountItemType) => {
+        return (
+            <List.Item>
+                {item.link
+                    ?
+                    <Link href={item.link}><a>{item.icon} {item.title}</a></Link>
+                    :
+                    <div onClick={handleLogout}><a>{item.icon} {item.title}</a></div>
+                }
+            </List.Item>
+        )
+    }
 
     const handleSubmit = () => {
         login(username, password)
@@ -25,7 +74,10 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolea
             <Drawer title={user ? user.name.firstname : 'Log in'} visible={visible} onClose={handleToggle}>
                 {user
                     ?
-                    <div>Mock div for now</div>
+                    <List
+                        dataSource={listData}
+                        renderItem={renderItem}
+                    />
                     :
                     <Space>
                         <Form onFinish={handleSubmit}>
@@ -46,7 +98,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin }: { visible: boolea
                                 rules={[{
                                     required: true,
                                     message: 'Unacceptable symbols',
-                                    pattern: /^[A-Za-z0-9_^]+$/,
+                                    pattern: /^[A-Za-z0-9_^$*]+$/,
                                 }]}
                             >
                                 <Input.Password type='password' onChange={(e) => setPassword(e.target.value)} />

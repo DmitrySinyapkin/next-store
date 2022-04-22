@@ -1,7 +1,8 @@
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 import { Input, Badge } from 'antd'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { LS_AUTH_USER } from '../constants/localStorage'
 import { useCountContext } from '../context/CountContext'
 import styles from '../styles/Header.module.scss'
 import AccountDrawer from './AccountDrawer'
@@ -13,12 +14,22 @@ const Header = () => {
     const [drawerVisible, setDrawerVisible] = useState(false)
     const [title, setTitle] = useState('Log in')
 
+    useEffect(() => {
+        if (localStorage.getItem(LS_AUTH_USER)) {
+            setTitle(JSON.parse(localStorage.getItem(LS_AUTH_USER)!).name.firstname)
+        }
+    }, [])
+
     const handleDrawerToggle = () => {
         setDrawerVisible(prev => !prev)
     }
 
     const handleLogin = (username: string) => {
         setTitle(username)
+    }
+
+    const handleExit = () => {
+        setTitle('Log in')
     }
 
     return (
@@ -43,7 +54,7 @@ const Header = () => {
                     <span>{title}</span>
                 </div>
             </div>
-            <AccountDrawer visible={drawerVisible} handleToggle={handleDrawerToggle} handleLogin={handleLogin} />
+            <AccountDrawer visible={drawerVisible} handleToggle={handleDrawerToggle} handleLogin={handleLogin} handleExit={handleExit} />
         </div>
     )
 }
