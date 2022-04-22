@@ -28,3 +28,14 @@ export interface UserType {
     },
     phone: string
 }
+
+interface CartItemType {
+    productId: number,
+    quantity: number
+} 
+export interface CartType {
+    id: number,
+    userId: number,
+    date: string,
+    products: Array<CartItemType>
+}
