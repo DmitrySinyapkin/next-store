@@ -6,10 +6,13 @@ import { useCountContext } from "../../context/CountContext";
 import MainLayout from "../../layouts/MainLayout";
 import { ProductInCartType } from "../../types/cart";
 import styles from "../../styles/CurrentCart.module.scss"
+import { useRouter } from "next/router";
 
 const CurrentCart: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
     const [products, setProducts] = useState([])
     const [count, setCount] = useCountContext()
+
+    const router = useRouter()
 
     useEffect(() => {
         setProducts(localStorage.getItem('mnstore-cart') ? JSON.parse(localStorage.getItem('mnstore-cart')!) : [])
@@ -57,7 +60,7 @@ const CurrentCart: NextPage = ({ categories }: InferGetServerSidePropsType<GetSe
                                     <div>Items: {getTotalQuantity(products)}</div>
                                     <div>Total: {getTotal(products)} $</div>
                                 </div>
-                                <button>Continue</button>
+                                <button onClick={() => router.push('/carts/confirm')}>Continue</button>
                             </div>
                         </div>
                     :

@@ -1,3 +1,5 @@
+import { CurrentCartType } from "./cart"
+
 export interface ProductType {
     id: number,
     title: string,
@@ -27,4 +29,7 @@ export interface UserType {
         }
     },
     phone: string
+}
+export interface CartType extends CurrentCartType {
+    id: number,
 }

@@ -1,6 +1,7 @@
-import { CATEGORIES_URL, LOGIN_URL, POST_METHOD, PRODUCTS_URL, USERS_URL } from "../constants/fakeStoreApi"
+import { CARTS_URL, CATEGORIES_URL, LOGIN_URL, POST_METHOD, PRODUCTS_URL, USERS_URL } from "../constants/fakeStoreApi"
 import { LS_AUTH_USER, LS_TOKEN } from "../constants/localStorage"
 import { UserType } from "../types/apiResponses"
+import { CurrentCartType } from "../types/cart"
 
 const doGetRequest = async (url: string) => {
     const res = await fetch(url)
@@ -62,4 +63,10 @@ export const login = (username: string, password: string) => {
             }
         })
         .catch(err => console.log(err))
+}
+
+export const addNewOrder = (data: CurrentCartType) => {
+    const url = CARTS_URL
+    const body = JSON.stringify(data)
+    return doPostRequest(url, body)
 }

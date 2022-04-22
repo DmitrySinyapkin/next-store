@@ -98,7 +98,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
                                 rules={[{
                                     required: true,
                                     message: 'Unacceptable symbols',
-                                    pattern: /^[A-Za-z0-9_^$*]+$/,
+                                    pattern: /^\S+$/,
                                 }]}
                             >
                                 <Input.Password type='password' onChange={(e) => setPassword(e.target.value)} />
