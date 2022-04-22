@@ -10,3 +10,13 @@ export interface ProductInTableType {
     quantity: number,
     cost: string,
 }
+
+interface CartItemType {
+    productId: number,
+    quantity: number
+} 
+export interface CurrentCartType {
+    userId: number,
+    date: string,
+    products: Array<CartItemType>
+}
