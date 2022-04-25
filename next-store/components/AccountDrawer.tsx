@@ -110,7 +110,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
                             <Form.Item>
                                 <button type="submit">Log in</button>
                             </Form.Item>
-                            <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'/signup'}><a>Sign up</a></Link></div>
+                            <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'user/signup'}><a>Sign up</a></Link></div>
                         </Form>
                     </Space>
                 }
