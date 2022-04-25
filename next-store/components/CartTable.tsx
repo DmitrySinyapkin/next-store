@@ -43,6 +43,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                 columns={columns}
                 dataSource={data}
                 bordered
+                size="small"
                 pagination={false}
                 summary={pageData => {
                     let totalQuantity = 0
