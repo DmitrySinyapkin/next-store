@@ -29,7 +29,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
     useEffect(() => {
         const filtered = items.map((item: ProductInCartType, index: number) => ({
             key: index + 1,
-            title: item.title,
+            title: item.title.slice(0, 50) + '...',
             quantity: item.quantity,
             cost: ((item.quantity * +item.price * 100) / 100).toFixed(2)
         }))
