@@ -7,3 +7,4 @@ export const USERS_URL = BASE_URL + 'users'
 export const LOGIN_URL = BASE_URL + 'auth/login'
 
 export const POST_METHOD = 'POST'
+export const PUT_METHOD = 'PUT'

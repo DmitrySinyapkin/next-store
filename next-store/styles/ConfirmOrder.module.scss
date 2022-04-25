@@ -1,8 +1,4 @@
 .confirm {
-    h1 {
-        margin-left: 20px;
-        font-size: 3rem;
-    }
     
     .wrapper {
         width: 1550px;
@@ -25,7 +21,7 @@
         }
     
         @media (max-width: 940px) {
-            width: 380px;
+            width: 300px;
         }
     }
     

@@ -29,7 +29,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
     useEffect(() => {
         const filtered = items.map((item: ProductInCartType, index: number) => ({
             key: index + 1,
-            title: item.title,
+            title: item.title.slice(0, 50) + '...',
             quantity: item.quantity,
             cost: ((item.quantity * +item.price * 100) / 100).toFixed(2)
         }))
@@ -43,6 +43,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                 columns={columns}
                 dataSource={data}
                 bordered
+                size="small"
                 pagination={false}
                 summary={pageData => {
                     let totalQuantity = 0
@@ -63,7 +64,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                                     <Text>{totalQuantity}</Text>
                                 </Table.Summary.Cell>
                                 <Table.Summary.Cell index={2}>
-                                    <Text>{totalCost} $</Text>
+                                    <Text>{totalCost}</Text>
                                 </Table.Summary.Cell>
                             </Table.Summary.Row>
                         </>

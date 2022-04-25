@@ -1,4 +1,5 @@
 import { CurrentCartType } from "./cart"
+import { UserDataType } from "./common"
 
 export interface ProductType {
     id: number,
@@ -9,26 +10,8 @@ export interface ProductType {
     image: string
 }
 
-export interface UserType {
+export interface UserType extends UserDataType {
     id: number,
-    email: string,
-    username: string,
-    password: string,
-    name:{
-        firstname: string,
-        lastname: string
-    },
-    address:{
-        city: string,
-        street: string,
-        number: number,
-        zipcode: string,
-        geolocation:{
-            lat: string,
-            long: string
-        }
-    },
-    phone: string
 }
 export interface CartType extends CurrentCartType {
     id: number,

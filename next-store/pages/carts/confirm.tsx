@@ -1,26 +1,19 @@
 import { message, Space } from "antd"
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
 import { addNewOrder, getCategories } from "../../api/fakeStoreApi"
 import CartTable from "../../components/CartTable"
 import CustomerCard from "../../components/CustomerCard"
 import { LS_AUTH_USER, LS_CART } from "../../constants/localStorage"
 import MainLayout from "../../layouts/MainLayout"
-import { UserType } from "../../types/apiResponses"
 import { ProductInCartType } from "../../types/cart"
 import styles from "../../styles/ConfirmOrder.module.scss"
 
 const ConfirmOrder: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
-    const [user, setUser] = useState<UserType | null>(null)
-    const [items, setItems] = useState<Array<ProductInCartType> | null>(null)
+    const user = localStorage.getItem(LS_AUTH_USER) ? JSON.parse(localStorage.getItem(LS_AUTH_USER)!) : null
+    const items = localStorage.getItem(LS_CART) ? JSON.parse(localStorage.getItem(LS_CART)!) : null
 
     const router = useRouter()
-
-    useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem(LS_AUTH_USER)!))
-        setItems(JSON.parse(localStorage.getItem(LS_CART)!))
-    }, [])
 
     const handleBack = () => {
         router.push('/carts/current')
@@ -58,7 +51,7 @@ const ConfirmOrder: NextPage = ({ categories }: InferGetServerSidePropsType<GetS
             <div className={styles.confirm}>
                 <h1>Confirm order</h1>
                 <div className={styles.wrapper}>
-                    {user && <CustomerCard user={user} />}
+                    <CustomerCard user={user} />
                     {items && <CartTable items={items} />}
                 </div>
                 <div className={styles.buttons}>

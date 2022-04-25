@@ -1,6 +1,7 @@
 import { LogoutOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons"
 import { Drawer, Form, Input, List, message, Space } from "antd"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { login } from "../api/fakeStoreApi"
 import { LS_AUTH_USER, LS_TOKEN } from "../constants/localStorage"
@@ -11,6 +12,8 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
     const [user, setUser] = useState<UserType | null>(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
+
+    const router = useRouter()
 
     const listData: Array<AccountItemType> = [
         {
@@ -43,6 +46,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
         handleExit()
         handleToggle()
         message.info('Logged out of account')
+        router.push('/')
     }
 
     const renderItem = (item: AccountItemType) => {
@@ -106,7 +110,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
                             <Form.Item>
                                 <button type="submit">Log in</button>
                             </Form.Item>
-                            <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'/signup'}><a>Sign up</a></Link></div>
+                            <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'/user/signup'}><a>Sign up</a></Link></div>
                         </Form>
                     </Space>
                 }
