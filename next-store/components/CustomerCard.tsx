@@ -57,7 +57,7 @@ const CustomerCard = ({ user }: { user: UserType | null }) => {
                         label='City:'
                         rules={[{
                             required: true,
-                            message: 'Please, enter your city!',
+                            message: 'Please, enter city name!',
                             pattern: /^[a-zA-Z]+$/,
                         }]}
                     >
@@ -68,7 +68,7 @@ const CustomerCard = ({ user }: { user: UserType | null }) => {
                         label='Street:'
                         rules={[{
                             required: true,
-                            message: 'Please, enter your city!',
+                            message: 'Please, enter street name!',
                             pattern: /^[a-zA-Z]+$/,
                         }]}
                     >
@@ -79,7 +79,7 @@ const CustomerCard = ({ user }: { user: UserType | null }) => {
                         label='Number:'
                         rules={[{
                             required: true,
-                            message: 'Please, enter your city!',
+                            message: 'Please, enter house number!',
                             pattern: /^\d+$/,
                         }]}
                     >
@@ -90,7 +90,7 @@ const CustomerCard = ({ user }: { user: UserType | null }) => {
                         label='ZIP code:'
                         rules={[{
                             required: true,
-                            message: 'Please, enter your city!',
+                            message: 'Please, enter ZIP code!',
                             pattern: /\d{5}([ \-]\d{4})?/,
                         }]}
                     >
