@@ -64,7 +64,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                                     <Text>{totalQuantity}</Text>
                                 </Table.Summary.Cell>
                                 <Table.Summary.Cell index={2}>
-                                    <Text>{totalCost} $</Text>
+                                    <Text>{totalCost}</Text>
                                 </Table.Summary.Cell>
                             </Table.Summary.Row>
                         </>
