@@ -67,7 +67,7 @@ export const login = (username: string, password: string) => {
         .catch(err => console.log(err))
 }
 
-export const addNewUser = (user: UserType) => {
+export const addNewUser = (user: UserDataType) => {
     const url = USERS_URL
     const method = POST_METHOD
     const body = JSON.stringify(user)
