@@ -73,6 +73,18 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
         handleToggle()
     }
 
+    // handler for test log in
+    const handleDemoLogin = () => {
+        login('johnd', 'm38rmF$')
+            .then(resp => {
+                setUser(resp)
+                handleLogin(resp.name.firstname)
+                message.success(`${resp.name.firstname} is logged in`)
+            })
+            .catch(err => message.error(`Authorization error: ${err}`))
+        handleToggle()
+    }
+
     return (
         <>
             <Drawer title={user ? user.name.firstname : 'Log in'} visible={visible} onClose={handleToggle}>
@@ -111,6 +123,13 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
                                 <button type="submit">Log in</button>
                             </Form.Item>
                             <div style={{ textAlign: 'center' }}>Don&apos;t have an account? <Link href={'/user/signup'}><a>Sign up</a></Link></div>
+                            {/* demo section for test access */}
+                            <div style={{ width: '100%', marginTop: '40px', padding: '5px', border: '1px solid gray', display: "flex", flexDirection: "column", gap: '10px', fontSize: '0.7rem' }}>
+                                <div>Demo mode</div>
+                                <div>Since Fake Store Api only immitates interaction with database and you cannot create a real user, you can log in for testing</div>
+                                <div style={{ color: 'darkcyan', cursor: 'pointer' }} onClick={handleDemoLogin} >Click here to log in as test user</div>
+                            </div>
+                            {/*-----------------------------------------------------*/}
                         </Form>
                     </Space>
                 }
