@@ -111,7 +111,7 @@ const Signup: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerS
                                 <Input />
                             </Form.Item>
                             <Divider />
-                            <div>Address:</div>
+                            <h3>Address:</h3>
                             <Form.Item
                                 name='city'
                                 label='City:'
