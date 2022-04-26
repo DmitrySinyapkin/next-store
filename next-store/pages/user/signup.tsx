@@ -111,13 +111,13 @@ const Signup: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerS
                                 <Input />
                             </Form.Item>
                             <Divider />
-                            <div>Address:</div>
+                            <h3>Address:</h3>
                             <Form.Item
                                 name='city'
                                 label='City:'
                                 rules={[{
                                     message: 'Please, enter city name!',
-                                    pattern: /^[a-zA-Z]+$/,
+                                    pattern: /^[a-zA-Z\s]+$/,
                                 }]}
                             >
                                 <Input />
@@ -127,7 +127,7 @@ const Signup: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerS
                                 label='Street:'
                                 rules={[{
                                     message: 'Please, enter street name!',
-                                    pattern: /^[a-zA-Z]+$/,
+                                    pattern: /^[a-zA-Z\s]+$/,
                                 }]}
                             >
                                 <Input />
