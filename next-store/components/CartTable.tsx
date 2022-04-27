@@ -54,7 +54,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                         totalCost += +product.cost * 100
                     })
 
-                    totalCost = totalCost / 100
+                    totalCost = (totalCost / 100).toFixed(2)
 
                     return (
                         <>
