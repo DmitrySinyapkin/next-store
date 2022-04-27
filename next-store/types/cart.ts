@@ -1,4 +1,4 @@
-import { CartType, ProductType } from "./apiResponses";
+import { ProductType } from "./apiResponses";
 
 export interface ProductInCartType extends ProductType {
     quantity: number,
@@ -11,7 +11,7 @@ export interface ProductInTableType {
     cost: string,
 }
 
-interface CartItemType {
+export interface CartItemType {
     productId: number,
     quantity: number
 } 

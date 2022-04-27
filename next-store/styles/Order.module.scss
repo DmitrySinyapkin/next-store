@@ -1,0 +1,117 @@
+@keyframes open {
+    from {
+        height: 0px;
+    }
+    to {
+        height: auto;
+    }
+}
+
+@keyframes close {
+    from {
+        height: auto;
+    }
+    to {
+        height: 0;
+    }
+}
+
+@mixin totals {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item {
+    width: 1550px;
+    margin: 5px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+
+    @media (min-width: 1551px) and (max-width: 1920px) {
+        width: 1250px;
+    }
+
+    @media (min-width: 1251px) and (max-width: 1550px) {
+        width: 920px;
+    }
+
+    @media (min-width: 941px) and (max-width: 1250px) {
+        width: 610px;
+    }
+
+    @media (max-width: 940px) {
+        width: 300px;
+    }
+
+    .header {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 940px) {
+            display: grid;
+            grid-template-areas:
+                "number status"
+                "date   date"
+                "tq     tc"
+            ;
+            grid-template-columns: repeat(2, 50%);
+            grid-template-rows: repeat(3, auto);
+            gap: 10px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        .number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            grid-area: number;
+        }
+
+        .date {
+            grid-area: date;
+        }
+
+        .status {
+            grid-area: status;
+        }
+
+        .total_quantity {
+            @include totals();
+            grid-area: tq;
+        }
+
+        .total_cost {
+            @include totals();
+            grid-area: tc;
+        }
+    }
+
+    .table_opened {
+        //animation: open 1s ease-out;
+        display: block;
+    }
+
+    .table_closed {
+        //animation: close 1s ease-out;
+        display: none;
+    }
+
+    .controls {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+
+        .button:hover {
+            cursor: pointer;
+            color: darkcyan;
+        }
+    }
+}
