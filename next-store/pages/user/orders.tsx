@@ -46,7 +46,7 @@ const OrderList: NextPage = ({ categories }: InferGetServerSidePropsType<GetServ
     if (!user) {
         return (
             <MainLayout categories={categories} title='Orders' description='User orders page'>
-                <div style={{ margin: '20px auto' }}>
+                <div style={{ margin: '40px 0', textAlign: 'center' }}>
                     <Spin />
                 </div>
             </MainLayout>
