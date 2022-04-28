@@ -8,8 +8,10 @@ import { LS_AUTH_USER, LS_CART } from "../../constants/localStorage"
 import MainLayout from "../../layouts/MainLayout"
 import { ProductInCartType } from "../../types/cart"
 import styles from "../../styles/ConfirmOrder.module.scss"
+import { useCountContext } from "../../context/CountContext"
 
 const ConfirmOrder: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
+    const [count, setCount] = useCountContext()
     const user = localStorage.getItem(LS_AUTH_USER) ? JSON.parse(localStorage.getItem(LS_AUTH_USER)!) : null
     const items = localStorage.getItem(LS_CART) ? JSON.parse(localStorage.getItem(LS_CART)!) : null
 
@@ -36,6 +38,7 @@ const ConfirmOrder: NextPage = ({ categories }: InferGetServerSidePropsType<GetS
                         message.success('Order accepted')
                         router.push('/user/orders')
                         localStorage.removeItem(LS_CART)
+                        setCount(0)
                     } else {
                         message.error('Order error! Please, try again later')
                     }
