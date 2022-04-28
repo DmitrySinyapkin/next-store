@@ -2,7 +2,7 @@ import { Divider, Form, Input, message, Modal, Result, Space } from "antd"
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next"
 import { useEffect, useState } from "react"
 import { getCategories, updateUser } from "../../api/fakeStoreApi"
-import { LS_AUTH_USER } from "../../constants/localStorage"
+import { LS_AUTH_USER, LS_TOKEN } from "../../constants/localStorage"
 import MainLayout from "../../layouts/MainLayout"
 import styles from "../../styles/Profile.module.scss"
 import { UserType } from "../../types/apiResponses"
@@ -102,7 +102,7 @@ const Profile: NextPage = ({ categories }: InferGetServerSidePropsType<GetServer
                                 setOldPassword('')
                                 setNewPassword('')
                                 setRepeatedNewPassword('')
-                                // localStorage.setItem(LS_AUTH_USER, JSON.stringify(resp)) - nothing in real will update in the database, no need to change local storage item
+                                // localStorage.setItem(LS_AUTH_USER, JSON.stringify(resp)) - nothing in real will be updated in the database, no need to change local storage item
                                 setTimeout(() => {
                                     setVisible(false)
                                     setIsPasswordChanged(false)
@@ -231,7 +231,7 @@ const Profile: NextPage = ({ categories }: InferGetServerSidePropsType<GetServer
                         </Form>
                     </div>
                     :
-                    <div>
+                    !localStorage.getItem(LS_TOKEN) && <div>
                         <Result status='error' title='This page is unavaliable for non-authorized users!' />
                     </div>
                 }
@@ -287,7 +287,7 @@ const Profile: NextPage = ({ categories }: InferGetServerSidePropsType<GetServer
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const categories = await getCategories()
     return {
         props: {

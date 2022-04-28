@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
 import { useEffect, useState } from "react";
 import { getAllProducts, getCartsByUser, getCategories } from "../../api/fakeStoreApi";
@@ -11,6 +12,7 @@ const OrderList: NextPage = ({ categories }: InferGetServerSidePropsType<GetServ
     const [user, setUser] = useState<UserType | null>(null)
     const [products, setProducts] = useState<Array<ProductType> | null>(null)
     const [orders, setOrders] = useState<Array<OrderType> | null>(null)
+    const [isEmpty, setIsEmpty] = useState(false)
 
     useEffect(() => {
         setUser(localStorage.getItem(LS_AUTH_USER) ? JSON.parse(localStorage.getItem(LS_AUTH_USER)!) : null)
@@ -23,8 +25,10 @@ const OrderList: NextPage = ({ categories }: InferGetServerSidePropsType<GetServ
             getCartsByUser(user!.id)
                 .then(resp => {
                     if (resp.length > 0) {
-                        const mixed = resp.map((order: CartType) => ({...order, products: order.products.map((item: CartItemType) => getProductData(item))}))
+                        const mixed = resp.map((order: CartType) => ({ ...order, products: order.products.map((item: CartItemType) => getProductData(item)) }))
                         setOrders(mixed)
+                    } else {
+                        setIsEmpty(true)
                     }
                 })
         }
@@ -39,6 +43,16 @@ const OrderList: NextPage = ({ categories }: InferGetServerSidePropsType<GetServ
         return mixed
     }
 
+    if (!user) {
+        return (
+            <MainLayout categories={categories} title='Orders' description='User orders page'>
+                <div style={{ margin: '20px auto' }}>
+                    <Spin />
+                </div>
+            </MainLayout>
+        )
+    }
+
     return (
         <MainLayout categories={categories} title='Orders' description='User orders page'>
             <h1>{user ? user.username : 'User'} | Orders</h1>
@@ -46,13 +60,13 @@ const OrderList: NextPage = ({ categories }: InferGetServerSidePropsType<GetServ
                 ?
                 orders.map((order: OrderType) => <Order key={order.id} order={order} />)
                 :
-                <div style={{ marginLeft: '20px', fontSize: '1.5rem' }}>There are no orders</div>
+                isEmpty && <div style={{ marginLeft: '20px', fontSize: '1.5rem' }}>There are no orders</div>
             }
         </MainLayout>
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const categories = await getCategories()
     return {
         props: {
