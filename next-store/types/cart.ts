@@ -11,7 +11,7 @@ export interface ProductInTableType {
     cost: string,
 }
 
-interface CartItemType {
+export interface CartItemType {
     productId: number,
     quantity: number
 } 
@@ -19,4 +19,11 @@ export interface CurrentCartType {
     userId: number,
     date: string,
     products: Array<CartItemType>
+}
+
+export interface OrderType {
+    id: number,
+    userId: number,
+    date: string,
+    products: Array<ProductInCartType>
 }

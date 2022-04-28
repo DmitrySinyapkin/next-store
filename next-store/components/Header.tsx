@@ -1,13 +1,12 @@
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
-import { Input, Badge } from 'antd'
+import { Badge } from 'antd'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { LS_AUTH_USER } from '../constants/localStorage'
 import { useCountContext } from '../context/CountContext'
 import styles from '../styles/Header.module.scss'
 import AccountDrawer from './AccountDrawer'
-
-const { Search } = Input
+import SearchProducts from './SearchProducts'
 
 const Header = () => {
     const [count, setCount] = useCountContext()
@@ -36,7 +35,7 @@ const Header = () => {
         <div className={styles.header}>
             <div className={styles.logo}><Link href={'/'}><a>MNStore</a></Link></div>
             <div className={styles.search}>
-                <Search placeholder='Search products...' style={{ width: 300 }} />
+                <SearchProducts />
             </div>
             <div className={styles.user}>
                 <Badge count={count} size='small'>

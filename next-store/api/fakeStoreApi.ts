@@ -86,3 +86,8 @@ export const addNewOrder = (data: CurrentCartType) => {
     const body = JSON.stringify(data)
     return doRequestWithBody(url, POST_METHOD, body)
 }
+
+export const getCartsByUser = (id: number) => {
+    const url = CARTS_URL + `/user/${id}`
+    return doGetRequest(url)
+}

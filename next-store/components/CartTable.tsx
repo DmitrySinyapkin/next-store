@@ -54,7 +54,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                         totalCost += +product.cost * 100
                     })
 
-                    totalCost = totalCost / 100
+                    const totalCostStr = (totalCost / 100).toFixed(2)
 
                     return (
                         <>
@@ -64,7 +64,7 @@ const CartTable = ({ items }: { items: Array<ProductInCartType> }) => {
                                     <Text>{totalQuantity}</Text>
                                 </Table.Summary.Cell>
                                 <Table.Summary.Cell index={2}>
-                                    <Text>{totalCost}</Text>
+                                    <Text>{totalCostStr}</Text>
                                 </Table.Summary.Cell>
                             </Table.Summary.Row>
                         </>
