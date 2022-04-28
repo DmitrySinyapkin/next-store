@@ -38,3 +38,8 @@ export interface SignupFormType {
     password: string,
     repeatedPassword: string,
 }
+
+export interface SearchOptionsType {
+    value: number,
+    label: string
+}
