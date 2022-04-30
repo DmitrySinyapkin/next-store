@@ -10,6 +10,7 @@ import { Space, message } from "antd";
 import { LS_CART } from "../../constants/localStorage";
 
 const Product: NextPage = ({ categories, product }: InferGetServerSidePropsType<GetServerSideProps>) => {
+    // @ts-ignore
     const [count, setCount] = useCountContext()
 
     const handleAddToCart = (product: ProductInCartType) => {
