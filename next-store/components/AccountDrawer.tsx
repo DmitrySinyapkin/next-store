@@ -89,6 +89,7 @@ const AccountDrawer = ({ visible, handleToggle, handleLogin, handleExit }: { vis
 
     return (
         <>
+            {/* @ts-ignore*/}
             <Drawer title={user ? user.name.firstname : 'Log in'} visible={visible} onClose={handleToggle}>
                 {user
                     ?
