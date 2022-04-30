@@ -5,7 +5,7 @@ import styles from "../styles/MainLayout.module.scss"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const MainLayout = ({children, categories, title, description}: {children: ReactNode, categories: string[], title: string, description: string}) => {
+const MainLayout = ({children, categories, title, description}: {children: ReactNode, categories: string[], title: string | undefined, description: string}) => {
     return (
         <div className={styles.layout}>
             <Head>

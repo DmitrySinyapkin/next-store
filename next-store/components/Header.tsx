@@ -9,6 +9,7 @@ import AccountDrawer from './AccountDrawer'
 import SearchProducts from './SearchProducts'
 
 const Header = () => {
+    // @ts-ignore
     const [count, setCount] = useCountContext()
     const [drawerVisible, setDrawerVisible] = useState(false)
     const [title, setTitle] = useState('Log in')

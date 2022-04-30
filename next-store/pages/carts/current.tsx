@@ -9,7 +9,8 @@ import styles from "../../styles/CurrentCart.module.scss"
 import { useRouter } from "next/router";
 
 const CurrentCart: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<Array<ProductInCartType>>([])
+    // @ts-ignore
     const [count, setCount] = useCountContext()
 
     const router = useRouter()

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export interface AccountItemType {
     title: string,
     link: string | null,
@@ -43,3 +45,5 @@ export interface SearchOptionsType {
     value: number,
     label: string
 }
+
+export type CountContextType = (number | Dispatch<SetStateAction<number>>)[]

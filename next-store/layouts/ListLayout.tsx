@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import styles from "../styles/ListLayout.module.scss"
 
-const ListLayout = ({children, header}: {children: ReactNode, header: string}) => {
+const ListLayout = ({children, header}: {children: ReactNode, header: string | undefined}) => {
     return (
         <div className={styles.list_layout}>
             <h1>{header}</h1>
