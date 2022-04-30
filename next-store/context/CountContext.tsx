@@ -1,7 +1,6 @@
 import { createContext, ReactNode, SetStateAction, useContext, useEffect, useMemo, useState, Dispatch } from "react";
 import { LS_CART } from "../constants/localStorage";
-
-type CountContextType = (number | Dispatch<SetStateAction<number>>)[]
+import { CountContextType } from "../types/common";
 
 const CountContext = createContext<CountContextType | undefined>(undefined)
 

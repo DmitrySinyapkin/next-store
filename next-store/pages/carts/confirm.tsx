@@ -11,6 +11,7 @@ import styles from "../../styles/ConfirmOrder.module.scss"
 import { useCountContext } from "../../context/CountContext"
 
 const ConfirmOrder: NextPage = ({ categories }: InferGetServerSidePropsType<GetServerSideProps>) => {
+    // @ts-ignore
     const [count, setCount] = useCountContext()
     const user = localStorage.getItem(LS_AUTH_USER) ? JSON.parse(localStorage.getItem(LS_AUTH_USER)!) : null
     const items = localStorage.getItem(LS_CART) ? JSON.parse(localStorage.getItem(LS_CART)!) : null
