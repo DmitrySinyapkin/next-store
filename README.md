@@ -1,1 +1,1 @@
-# next-store
+# next-store app
