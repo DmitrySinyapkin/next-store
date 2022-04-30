@@ -1,10 +1,12 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, SetStateAction, useContext, useEffect, useMemo, useState, Dispatch } from "react";
 import { LS_CART } from "../constants/localStorage";
 
-const CountContext = createContext()
+type CountContextType = (number | Dispatch<SetStateAction<number>>)[]
+
+const CountContext = createContext<CountContextType | undefined>(undefined)
 
 export const AppWrapper = ({ children }: {children: ReactNode}) => {
-    const [count, setCount] = useState<Number>(0)
+    const [count, setCount] = useState<number>(0)
 
     useEffect(() => {
         setCount(localStorage.getItem(LS_CART) ? JSON.parse(localStorage.getItem(LS_CART)!).length : 0)
